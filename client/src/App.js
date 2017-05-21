@@ -5,10 +5,18 @@ import ChannelsListWithData from './components/ChannelsListWithData'
 
 import './App.css';
 
+const networkInterface = createNetworkInterface({
+  uri: 'http://localhost:4000/graphql',
+});
+
+networkInterface.use([{
+  applyMiddleware(req, next) {
+    setTimeout(next, 500);
+  }
+}])
+
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: 'http://localhost:4000/graphql',
-  })
+  networkInterface
 });
 
 class App extends Component {

@@ -9,10 +9,21 @@ const AddChannel = ({ mutate }) => {
       evt.persist();
       mutate({
         variables: { name: evt.target.value },
-        refetchQueries: [{ query: channelsListQuery }],
+        optimisticResponse: {
+          addChannel: {
+            name: evt.target.value,
+            id: Math.round(Math.random() * -1000000),
+            __typename: 'Channel'
+          }
+        },
+        update: (store, { data: { addChannel } }) => {
+          const data = store.readQuery({ query: channelsListQuery });
+          data.channels.push(addChannel);
+          store.writeQuery({ query: channelsListQuery, data });
+          evt.target.value = '';
+        }
       })
       .then(res => {
-        evt.target.value = '';
       });
     }
   };
