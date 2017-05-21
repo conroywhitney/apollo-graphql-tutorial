@@ -3,7 +3,7 @@ import { gql, graphql } from 'react-apollo';
 
 import AddChannel from './AddChannel'
 
-const channelsListQuery = gql`
+export const channelsListQuery = gql`
   query ChannelsListQuery {
     channels {
       id
@@ -27,4 +27,6 @@ const ChannelsList = ({ data: { loading, error, channels }}) => {
   )
 };
 
-export default graphql(channelsListQuery)(ChannelsList);
+export default graphql(channelsListQuery, {
+  options: { pollInterval: 5000 },
+})(ChannelsList);
