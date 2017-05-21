@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { ApolloClient, ApolloProvider } from 'react-apollo';
+import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo';
 
 import ChannelsList from './ChannelsList'
-import mockNetworkInterface from './mockInterface';
 
 import logo from './logo.svg';
 import './App.css';
 
 const client = new ApolloClient({
-  networkInterface: mockNetworkInterface
+  networkInterface: createNetworkInterface({
+    uri: 'http://localhost:4000/graphql',
+  })
 });
 
 class App extends Component {
