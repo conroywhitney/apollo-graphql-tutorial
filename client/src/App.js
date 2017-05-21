@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo';
 
-import ChannelsList from './ChannelsList'
+import ChannelsList from './components/ChannelsListWithData'
 
 import logo from './logo.svg';
 import './App.css';

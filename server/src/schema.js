@@ -3,7 +3,6 @@ import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 import { resolvers } from './resolvers';
 
 const typeDefs = `
-
   type Channel {
     id: ID!
     name: String
@@ -11,6 +10,10 @@ const typeDefs = `
 
   type Query {
     channels: [Channel]
+  }
+
+  type Mutation {
+    addChannel(name: String!): Channel
   }
 `;
 
