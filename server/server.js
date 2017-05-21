@@ -12,6 +12,10 @@ server.use('/graphql', bodyParser.json(), graphqlExpress({
   schema
 }));
 
+server.use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql'
+}));
+
 server.get('/', function (req, res) {
   res.send('Hello World!');
 });
