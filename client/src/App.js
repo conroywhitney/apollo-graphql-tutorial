@@ -6,10 +6,14 @@ import {
   ApolloProvider
 } from 'react-apollo';
 
+import mockNetworkInterface from './mockInterface';
+
 import logo from './logo.svg';
 import './App.css';
 
-const client = new ApolloClient();
+const client = new ApolloClient({
+  networkInterface: mockNetworkInterface
+});
 
 const channelsListQuery = gql`
   query ChannelsListQuery {
